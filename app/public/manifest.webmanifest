@@ -1,0 +1,10 @@
+{
+  "name": "AI Naming Studio",
+  "short_name": "Naming Studio",
+  "description": "Every name has a story. Start yours.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0b14",
+  "theme_color": "#4f46b8",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
