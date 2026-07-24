@@ -2,7 +2,7 @@
 
 A premium AI-powered naming platform for parents, writers, game developers, and worldbuilders — generate names for babies, characters, pets, kingdoms, spaceships, and brands, with meaning, origin, pronunciation, and the story behind every name.
 
-> **Status:** Phases 1–4 (research → PRD/architecture → MVP → power features) built and verified. Remaining for launch: Supabase auth/sync, Stripe billing, and deployment — blocked on account credentials (see docs/00-project-log.md).
+> **Status:** Deployed to production (Vercel) with AI generation + Supabase accounts/cloud-sync integrated. Remaining for launch: Stripe billing. See docs/00-project-log.md.
 
 ## Quick start
 
@@ -15,6 +15,18 @@ npm run dev        # http://localhost:3000 — runs in demo mode with no keys
 Optional: set `ANTHROPIC_API_KEY` (or `OPENAI_API_KEY` / `GOOGLE_API_KEY`) to enable real AI generation server-side — or add a bring-your-own key in the app's Settings page. See `app/.env.example`.
 
 **Deploy (Vercel):** import this repo, set the project root directory to `app/`, add an AI provider env var, deploy. Full guide in `docs/03-architecture.md` §6.
+
+## Cloud sync & accounts (Supabase)
+
+Optional — without it the app is fully functional, local-only. To enable email sign-in and cross-device favorites sync:
+
+1. In your Supabase project: **SQL Editor → New query**, paste the contents of [`supabase/migrations/001_init.sql`](supabase/migrations/001_init.sql), **Run**.
+2. **Project Settings → Data API**: copy the **Project URL** and the **anon / publishable** key (safe to expose in the browser — row-level security guards the data; never use the `service_role` key here).
+3. Add both to Vercel → Settings → Environment Variables (all environments) and redeploy:
+   - `NEXT_PUBLIC_SUPABASE_URL` = the Project URL
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` = the anon/publishable key
+4. Supabase **Authentication → URL Configuration**: set Site URL to your deployment URL (e.g. `https://ai-naming-studio.vercel.app`) so magic-link emails redirect back correctly.
+5. Visit `/account` on the site, enter your email, click the emailed link — favorites now sync (local-first; offline keeps working).
 
 ## What's inside
 

@@ -42,3 +42,10 @@ Shipped everything buildable without external accounts:
 ## 2026-07-20 — Migration
 
 - Project migrated from `Ryo-333/Home_Sales` (branch `claude/ai-naming-studio-glabow`, subdirectory `ai-naming-studio/`) into its own repository `ryo-333/ai-naming-studio` at repo root. Development continues here.
+
+## 2026-07-20 — Phase 4b: Supabase accounts + cloud sync
+
+- Deployed to production at https://ai-naming-studio.vercel.app (Vercel, OpenAI key).
+- Supabase integration shipped (stakeholder created project "Ryo Kami Studios"): email magic-link sign-in at /account, local-first favorites with debounced cloud push and pull-and-merge on sign-in, RLS-guarded `user_collections` table (migration in supabase/migrations/001_init.sql). App degrades gracefully to local-only when env vars are absent.
+- Pragmatic schema note: cloud sync uses one `user_collections` table with a jsonb `names` column mirroring the client Collection shape, instead of the fully normalized collections/saved_names tables from docs/03 — revisit when community features need per-name rows.
+- Known MVP sync limitation: deletions can resurrect when merging from a stale device.
