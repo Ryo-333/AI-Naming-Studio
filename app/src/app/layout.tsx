@@ -15,6 +15,7 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: light)", color: "#faf8f4" },
     { media: "(prefers-color-scheme: dark)", color: "#0c0b14" },
   ],
+  viewportFit: "cover",
 };
 
 const themeInit = `(function(){try{var t=localStorage.getItem('ans.theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();`;
@@ -36,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <footer className="footer">
           <div className="container">
-            AI Naming Studio · Every name has a story. · <a href="/generate">Studio</a> · <a href="/pricing">Pricing</a>
+            AI Naming Studio · Every name has a story. · <a href="/generate">Studio</a> · <a href="/pricing">Pricing</a> · <a href="/privacy">Privacy</a>
           </div>
         </footer>
       </body>

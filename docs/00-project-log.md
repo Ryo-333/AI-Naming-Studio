@@ -49,3 +49,9 @@ Shipped everything buildable without external accounts:
 - Supabase integration shipped (stakeholder created project "Ryo Kami Studios"): email magic-link sign-in at /account, local-first favorites with debounced cloud push and pull-and-merge on sign-in, RLS-guarded `user_collections` table (migration in supabase/migrations/001_init.sql). App degrades gracefully to local-only when env vars are absent.
 - Pragmatic schema note: cloud sync uses one `user_collections` table with a jsonb `names` column mirroring the client Collection shape, instead of the fully normalized collections/saved_names tables from docs/03 — revisit when community features need per-name rows.
 - Known MVP sync limitation: deletions can resurrect when merging from a stale device.
+
+## 2026-07-20 — Phase 5 (start): mobile scaffolding + store prep
+
+- Capacitor 8 project in `mobile/` with generated native Android and iOS projects (appId com.ryokamistudios.ainamingstudio) wrapping the live deployment; offline fallback page; build guide in mobile/README.md.
+- Store prep on web: /privacy policy page (footer-linked), viewport-fit=cover + safe-area header padding for notches.
+- Before store submission: native touches (haptics/push/share) to clear Apple guideline 4.2, icons via @capacitor/assets, developer accounts (Apple $99/yr, Play $25).

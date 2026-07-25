@@ -1,0 +1,13 @@
+{
+  "appId": "com.ryokamistudios.ainamingstudio",
+  "appName": "AI Naming Studio",
+  "webDir": "www",
+  "server": {
+    "url": "https://ai-naming-studio.vercel.app",
+    "cleartext": false
+  },
+  "ios": {
+    "contentInset": "automatic"
+  },
+  "backgroundColor": "#0c0b14"
+}

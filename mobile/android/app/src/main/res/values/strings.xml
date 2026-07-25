@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">AI Naming Studio</string>
+    <string name="title_activity_main">AI Naming Studio</string>
+    <string name="package_name">com.ryokamistudios.ainamingstudio</string>
+    <string name="custom_url_scheme">com.ryokamistudios.ainamingstudio</string>
+</resources>
