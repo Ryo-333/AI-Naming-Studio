@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { getSupabase, supabaseConfigured, supabaseHost } from "@/lib/supabase";
+import { getSupabase, supabaseConfigured } from "@/lib/supabase";
 import { getSyncState, syncNow, useCollections, type SyncState } from "@/lib/store";
 
 export default function AccountPage() {
@@ -118,15 +118,11 @@ export default function AccountPage() {
               <button className="btn btn-ghost btn-sm" onClick={signOut}>Sign out</button>
             </div>
             {msg && <p style={{ margin: 0, fontSize: "0.9rem" }}>{msg}</p>}
+            <p style={{ color: "var(--text-dim)", fontSize: "0.85rem", margin: 0 }}>
+              Local-first: everything keeps working offline; the cloud copy is a backup and bridge between your devices.
+            </p>
           </div>
         )}
-
-        <p style={{ color: "var(--text-dim)", fontSize: "0.85rem", marginTop: 18 }}>
-          Local-first: everything keeps working offline; the cloud copy is a backup and bridge between your devices.
-        </p>
-        <p style={{ color: "var(--text-dim)", fontSize: "0.78rem" }}>
-          Sync backend: <code>{supabaseHost ?? "not configured"}</code>
-        </p>
       </div>
     </section>
   );
