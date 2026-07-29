@@ -28,6 +28,18 @@ Optional — without it the app is fully functional, local-only. To enable email
 4. Supabase **Authentication → URL Configuration**: set Site URL to your deployment URL (e.g. `https://ai-naming-studio.vercel.app`) so magic-link emails redirect back correctly.
 5. Visit `/account` on the site, enter your email, click the emailed link — favorites now sync (local-first; offline keeps working).
 
+## Billing (Stripe)
+
+Optional — pricing buttons show "billing not enabled" until configured. Setup:
+
+1. Run `supabase/migrations/002_entitlements.sql` in the Supabase SQL Editor.
+2. In the [Stripe Dashboard](https://dashboard.stripe.com) (Test mode first), create four products with one price each: Premium $7.99/month (recurring), Premium Yearly $49/year (recurring), Lifetime $129 (one-time), Credits $4.99 (one-time). Copy each **price ID** (`price_…`).
+3. **Developers → Webhooks → Add endpoint**: URL `https://<your-domain>/api/stripe/webhook`, events `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`. Copy the **signing secret** (`whsec_…`).
+4. Add to Vercel env vars (server-side; never `NEXT_PUBLIC`): `STRIPE_SECRET_KEY` (Developers → API keys), `STRIPE_WEBHOOK_SECRET`, the four `STRIPE_PRICE_*` IDs, and `SUPABASE_SERVICE_ROLE_KEY` (Supabase → Project Settings → API keys → service_role). Redeploy.
+5. Test with card `4242 4242 4242 4242` in Stripe Test mode, then flip the key/prices/webhook to Live mode when ready.
+
+Flow: pricing page → Stripe Checkout (hosted) → webhook grants the plan/credits in `entitlements` → Account page shows plan + "Manage billing" (Stripe customer portal — enable it once under Settings → Billing → Customer portal).
+
 ## What's inside
 
 | Route | Feature |

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { getSupabase, supabaseConfigured } from "@/lib/supabase";
 import { getSyncState, syncNow, useCollections, type SyncState } from "@/lib/store";
+import { fetchEntitlement, openBillingPortal, type Entitlement } from "@/lib/billing";
 
 export default function AccountPage() {
   const [session, setSession] = useState<Session | null>(null);
@@ -11,15 +12,20 @@ export default function AccountPage() {
   const [msg, setMsg] = useState("");
   const [busy, setBusy] = useState(false);
   const [sync, setSync] = useState<{ state: SyncState; detail: string }>({ state: "off", detail: "" });
+  const [ent, setEnt] = useState<Entitlement | null>(null);
   const { collections } = useCollections();
 
   useEffect(() => {
     const sb = getSupabase();
     if (!sb) return;
     void sb.auth.getSession().then(({ data }) => setSession(data.session));
+    void fetchEntitlement().then(setEnt);
     const { data: sub } = sb.auth.onAuthStateChange((_e, s) => {
       setSession(s);
-      if (s) void syncNow();
+      if (s) {
+        void syncNow();
+        void fetchEntitlement().then(setEnt);
+      }
     });
     const onSync = () => setSync(getSyncState());
     window.addEventListener("ans:sync", onSync);
@@ -98,6 +104,25 @@ export default function AccountPage() {
               <p style={{ color: "var(--text-dim)", fontSize: "0.9rem", margin: "4px 0 0" }}>
                 {collections.length} collection{collections.length === 1 ? "" : "s"} · {totalNames} saved name{totalNames === 1 ? "" : "s"}
               </p>
+            </div>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", fontSize: "0.9rem" }}>
+              <span className="chip chip-static">
+                {ent?.plan === "lifetime" ? "Lifetime ✦" : ent?.plan === "premium" ? "Premium" : "Free plan"}
+              </span>
+              {(ent?.credits ?? 0) > 0 && <span className="chip chip-static">{ent!.credits} credits</span>}
+              {ent?.plan === "free" && <a href="/pricing" className="btn btn-sm btn-aurora">Upgrade</a>}
+              {ent?.hasBilling && (
+                <button
+                  className="btn btn-sm"
+                  onClick={async () => {
+                    const r = await openBillingPortal();
+                    if (r.url) window.location.href = r.url;
+                    else if (r.error) setMsg(`⚠️ ${r.error}`);
+                  }}
+                >
+                  Manage billing
+                </button>
+              )}
             </div>
             <div style={{ fontSize: "0.9rem" }}>
               Sync:{" "}

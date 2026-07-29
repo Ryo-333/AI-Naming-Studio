@@ -55,3 +55,10 @@ Shipped everything buildable without external accounts:
 - Capacitor 8 project in `mobile/` with generated native Android and iOS projects (appId com.ryokamistudios.ainamingstudio) wrapping the live deployment; offline fallback page; build guide in mobile/README.md.
 - Store prep on web: /privacy policy page (footer-linked), viewport-fit=cover + safe-area header padding for notches.
 - Before store submission: native touches (haptics/push/share) to clear Apple guideline 4.2, icons via @capacitor/assets, developer accounts (Apple $99/yr, Play $25).
+
+## 2026-07-20 — Phase 4c: Stripe billing
+
+- Full Stripe integration: hosted Checkout for premium_monthly/$7.99, premium_yearly/$49, lifetime/$129, credits/$4.99-per-200; webhook grants entitlements in Supabase via service role; customer portal for self-serve cancellation; pricing page wired to real purchases with owned-plan states; Account page shows plan/credits/Manage billing.
+- New table `entitlements` (migration 002). New server env vars: STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, 4x STRIPE_PRICE_*, SUPABASE_SERVICE_ROLE_KEY.
+- Degrades gracefully: without keys, purchase attempts return a clear "billing not enabled" message.
+- Not yet enforced server-side: free-tier generation caps/credit metering on /api/generate — entitlements exist but generation is not gated. Next billing task.
