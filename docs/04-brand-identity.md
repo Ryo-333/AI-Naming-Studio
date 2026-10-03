@@ -9,7 +9,7 @@ The requested iPhone tab themes are:
 - **Worlds:** stark black, white, and vivid red with cinematic sci-fi imagery.
 - **Characters:** blue-gray stone, forest green, and dark earthy brown with castle and forest imagery.
 
-Three visual mockups have been delivered for review. Editable Figma pages are in progress. Final screen approval, exact design tokens, and the clickable flow remain pending; this update does not change app styles or code. See the [project log](00-project-log.md#2026-10-03-oruko-design-progress) for progress and next checkpoints.
+Three visual mockups have been delivered for review. Three editable Figma screens are now saved and visually checked, with reusable components, draft design tokens and text styles, editable vector imagery, and cross-tab navigation. Final design approval and the end-to-end naming flow remain pending. Generation, filter choices, saves, and backend persistence are still static design concepts; this update does not change app styles or code. See the [project log](00-project-log.md#2026-10-03-oruko-design-progress) for progress and next checkpoints.
 
 ## Historical direction: "Arcane Atelier"
 
