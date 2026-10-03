@@ -2,6 +2,8 @@
 
 *v1.0 · Phase 2 deliverable*
 
+> **Direction update, 2026-10-03:** Oruko is the confirmed working name, and an iOS app remains part of the intended product. Baby, Worlds, and Characters design pages are being developed in Figma. The proposed describe → generate → details → save flow and final designs still need review. This PRD remains the feature baseline: preserve all 21 categories and map them into the revised UX before making scope changes. See the [current project log](00-project-log.md#2026-10-03-oruko-design-progress).
+
 ## 1. Vision
 
 The premium AI naming platform: generate names you instantly love — for babies, characters, worlds, pets, and brands — and understand *why* they fit. Every name ships with meaning, origin, pronunciation, and story context, and can grow into a full character or world.
