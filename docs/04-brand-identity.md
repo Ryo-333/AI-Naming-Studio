@@ -1,4 +1,19 @@
-# Brand identity — "Arcane Atelier" (approved direction)
+# Brand identity
+
+## Current direction: Oruko (2026-10-03)
+
+**Working name:** Oruko is confirmed.
+
+The requested iPhone tab themes are:
+- **Baby:** baby pink and powder blue; butter yellow remains a proposed accent.
+- **Worlds:** stark black, white, and vivid red with cinematic sci-fi imagery.
+- **Characters:** blue-gray stone, forest green, and dark earthy brown with castle and forest imagery.
+
+Three visual mockups have been delivered for review. Editable Figma pages are in progress. Final screen approval, exact design tokens, and the clickable flow remain pending; this update does not change app styles or code. See the [project log](00-project-log.md#2026-10-03-oruko-design-progress) for progress and next checkpoints.
+
+## Historical direction: "Arcane Atelier"
+
+The earlier brand document is retained below as context for the existing app. Its previous name candidates and visual direction do not override the newer Oruko decisions above.
 
 **Product name:** AI Naming Studio (working) — candidate consumer name **Namora** reserved for later brand decision; nothing in code hard-couples to the name.
 
