@@ -2,7 +2,7 @@
 
 *v1.0 · Phase 2 deliverable*
 
-> **Direction update, 2026-10-03:** Oruko is the confirmed working name, and an iOS app remains part of the intended product. Baby, Worlds, and Characters design pages are being developed in Figma. The proposed describe → generate → details → save flow and final designs still need review. This PRD remains the feature baseline: preserve all 21 categories and map them into the revised UX before making scope changes. See the [current project log](00-project-log.md#2026-10-03-oruko-design-progress).
+> **Direction update, 2026-10-03:** Oruko is the confirmed working name, and an iOS app remains part of the intended product. Three editable Baby, Worlds, and Characters screens are saved in Figma, visually checked, and connected by cross-tab navigation. The proposed describe → generate → details → save flow and final designs still need review. This PRD remains the feature baseline: preserve all 21 categories and map them into the revised UX before making scope changes. See the [current project log](00-project-log.md#2026-10-03-oruko-design-progress).
 
 ## 1. Vision
 
