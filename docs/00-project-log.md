@@ -1,5 +1,55 @@
 # Project log & decision record
 
+## 2026-10-03: Oruko design progress
+
+### Confirmed direction
+
+- **Working name:** Oruko, continuing the existing AI Naming Studio project.
+- **Platform intent:** an iOS app is intended alongside the existing web project. The repository already contains Capacitor iOS/Android scaffolding; this update does not establish an App Store release or a new native implementation.
+- **Baby tab:** baby pink and powder blue. Butter yellow is a proposed accent for review.
+- **Worlds tab:** stark black, white, and vivid red, with a cinematic sci-fi direction.
+- **Characters tab:** blue-gray stone, forest green, and dark earthy brown, with castle and forest imagery.
+- The three themed tabs are a design direction. They do not replace the existing category and feature scope.
+
+### Delivered and in progress
+
+| Item | Status | What it means |
+|---|---|---|
+| Three iPhone visual mockups | Delivered for review | Visual concepts have been shared; final design approval is pending. |
+| Editable Figma pages for the three themes | Saved and visually checked | Three 393 × 852 iPhone screens: Baby names, Worlds, and Characters. Final design approval is pending. |
+| Proposed naming flow | Proposal | Describe → generate names → view details → save to collections, with consistent navigation. |
+| New Oruko app implementation | Not started in this design update | No app code changes or production release are included. |
+| Cross-tab Figma navigation | Connected and read back | Six prototype reactions connect the three main screens. |
+| End-to-end naming prototype | Not completed | Generation, filter choices, saves, and backend persistence remain static design concepts. |
+
+### Design deliverable verification
+
+The saved Figma work contains native editable text, forms, and navigation; original editable vector hero illustrations; seven reusable component sets containing 36 components; 67 scoped design tokens with semantic aliases; and 14 text styles. The three screens contain 56 native text layers and 60 component instances, with no raster image fills. Final screenshots were checked, clipping and category-copy defects were corrected, and all six cross-tab prototype reactions were read back. This verifies the design deliverable, not generation, filter interaction, saving, or backend behavior.
+
+### Existing scope to preserve
+
+All 21 categories remain in scope: Baby Names, Character Names, Fantasy, Sci-Fi, Anime, Historical, Mythology, Royal, Modern, Pet Names, Cities, Kingdoms, Weapons, Spells, Guilds, Businesses, Planets, Aliens, Robots, Superheroes, and Villains. The implementation list is in [`app/src/lib/types.ts`](../app/src/lib/types.ts).
+
+The next UX pass should map those categories into the new navigation and preserve the existing generator, filters, name explanations, match scores, Inspiration Mode, AI chat, Baby Mode, Character Builder, collections, comparison, notes, exports, and settings. Any later scope reduction needs an explicit decision.
+
+### Repository baseline and verification limits
+
+The existing repository contains the earlier web app, Supabase integration, Stripe integration, and Capacitor mobile scaffolding. These are separate from the new Oruko design work:
+
+- [Initial app and documentation import, 2026-07-20](https://github.com/Ryo-333/AI-Naming-Studio/commit/ad79cd48a0556214b405991aa4571e9c8fa201a6)
+- [Accounts and cloud-sync implementation, 2026-07-24](https://github.com/Ryo-333/AI-Naming-Studio/commit/508d6ccebeebb09dbafe3831bbe013230335da0e)
+- [Mobile scaffolding, 2026-07-25](https://github.com/Ryo-333/AI-Naming-Studio/commit/7ea2542b2b23e262504df038d4dab87ea33dcb6e)
+- [Stripe integration, 2026-07-29](https://github.com/Ryo-333/AI-Naming-Studio/commit/0ce2f2eaef126d142492ad61eee646e0776bf0ed)
+
+This is a documentation review, not a fresh production, billing, build, or device test. Earlier entries below retain their historical status claims. The previously recorded stale-device deletion-sync limitation and missing server-side generation metering remain open verification items; no fix is claimed here.
+
+### Next decisions and checkpoints
+
+1. Review the three saved editable Figma screens, including palette details, imagery, and navigation.
+2. Map all existing categories and features into the proposed navigation.
+3. Confirm the screen flow and design before implementing or treating it as an approved prototype.
+4. Record actual implementation, test, and deployment results separately as that work happens.
+
 ## 2026-07-20 — Phase 1
 
 - **Repo creation blocked:** the GitHub App token in this session cannot create repositories (`403 Resource not accessible by integration`). Work proceeds on branch `claude/ai-naming-studio-glabow` of `Ryo-333/Home_Sales`, fully contained in `ai-naming-studio/` for later extraction into a dedicated repo.

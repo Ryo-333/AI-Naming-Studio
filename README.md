@@ -1,8 +1,10 @@
-# AI Naming Studio
+# AI Naming Studio / Oruko
 
 A premium AI-powered naming platform for parents, writers, game developers, and worldbuilders — generate names for babies, characters, pets, kingdoms, spaceships, and brands, with meaning, origin, pronunciation, and the story behind every name.
 
-> **Status:** Deployed to production (Vercel) with AI generation + Supabase accounts/cloud-sync integrated. Remaining for launch: Stripe billing. See docs/00-project-log.md.
+> **Current direction (2026-10-03):** **Oruko** is the confirmed working name. Three editable iPhone screens are saved in Figma and ready for design review, with cross-tab navigation connected. The new visual direction and proposed flow have not been implemented in the app. See the [current project log](docs/00-project-log.md#2026-10-03-oruko-design-progress).
+>
+> **Existing baseline:** This repository already contains the web app, Supabase integration, Stripe integration, and Capacitor mobile scaffolding. Current production configuration and release readiness have not been revalidated in this documentation update.
 
 ## Quick start
 
@@ -59,6 +61,6 @@ Flow: pricing page → Stripe Checkout (hosted) → webhook grants the plan/cred
 |---|---|---|
 | 00 | [Project log & decisions](docs/00-project-log.md) | Living |
 | 01 | [Market research report](docs/01-market-research.md) | ✅ |
-| 02 | [PRD, personas, MVP scope, roadmap](docs/02-prd.md) | ✅ |
+| 02 | [PRD, personas, MVP scope, roadmap](docs/02-prd.md) | Existing scope; Oruko UX mapping pending |
 | 03 | [Architecture: stack, IA, DB schema, AI prompts, testing, deployment, growth](docs/03-architecture.md) | ✅ |
-| 04 | [Brand identity](docs/04-brand-identity.md) | ✅ |
+| 04 | [Brand identity](docs/04-brand-identity.md) | Current Oruko direction + historical baseline |
