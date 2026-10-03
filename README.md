@@ -2,7 +2,7 @@
 
 A premium AI-powered naming platform for parents, writers, game developers, and worldbuilders — generate names for babies, characters, pets, kingdoms, spaceships, and brands, with meaning, origin, pronunciation, and the story behind every name.
 
-> **Current direction (2026-10-03):** **Oruko** is the confirmed working name. Three iPhone mockups have been delivered for review, and editable Figma design work is in progress. The new visual direction and proposed flow have not been implemented in the app. See the [current project log](docs/00-project-log.md#2026-10-03-oruko-design-progress).
+> **Current direction (2026-10-03):** **Oruko** is the confirmed working name. Three editable iPhone screens are saved in Figma and ready for design review, with cross-tab navigation connected. The new visual direction and proposed flow have not been implemented in the app. See the [current project log](docs/00-project-log.md#2026-10-03-oruko-design-progress).
 >
 > **Existing baseline:** This repository already contains the web app, Supabase integration, Stripe integration, and Capacitor mobile scaffolding. Current production configuration and release readiness have not been revalidated in this documentation update.
 
