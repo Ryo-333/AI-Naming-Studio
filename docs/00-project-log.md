@@ -16,10 +16,15 @@
 | Item | Status | What it means |
 |---|---|---|
 | Three iPhone visual mockups | Delivered for review | Visual concepts have been shared; final design approval is pending. |
-| Editable Figma pages for the three themes | In progress | Requested and being built; completion and review outcome will be recorded when verified. |
+| Editable Figma pages for the three themes | Saved and visually checked | Three 393 × 852 iPhone screens: Baby names, Worlds, and Characters. Final design approval is pending. |
 | Proposed naming flow | Proposal | Describe → generate names → view details → save to collections, with consistent navigation. |
-| New Oruko app implementation | Not started in this design update | No app code changes or deployment are included. |
-| Clickable Oruko prototype | Not completed | The proposed flow is not yet a verified working prototype. |
+| New Oruko app implementation | Not started in this design update | No app code changes or production release are included. |
+| Cross-tab Figma navigation | Connected and read back | Six prototype reactions connect the three main screens. |
+| End-to-end naming prototype | Not completed | Generation, filter choices, saves, and backend persistence remain static design concepts. |
+
+### Design deliverable verification
+
+The saved Figma work contains native editable text, forms, and navigation; original editable vector hero illustrations; seven reusable component sets containing 36 components; 67 scoped design tokens with semantic aliases; and 14 text styles. The three screens contain 56 native text layers and 60 component instances, with no raster image fills. Final screenshots were checked, clipping and category-copy defects were corrected, and all six cross-tab prototype reactions were read back. This verifies the design deliverable, not generation, filter interaction, saving, or backend behavior.
 
 ### Existing scope to preserve
 
@@ -40,7 +45,7 @@ This is a documentation review, not a fresh production, billing, build, or devic
 
 ### Next decisions and checkpoints
 
-1. Finish and review the editable Figma pages, including palette details and imagery.
+1. Review the three saved editable Figma screens, including palette details, imagery, and navigation.
 2. Map all existing categories and features into the proposed navigation.
 3. Confirm the screen flow and design before implementing or treating it as an approved prototype.
 4. Record actual implementation, test, and deployment results separately as that work happens.
