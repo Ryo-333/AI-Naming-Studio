@@ -53,13 +53,25 @@ function schedulePush() {
   pushTimer = setTimeout(() => void pushAll(), 1500);
 }
 
-async function pushAll(): Promise<void> {
+type SyncResult = { ok: boolean; message: string };
+
+function syncError(error: unknown): string {
+  return error && typeof error === "object" && "message" in error && typeof error.message === "string"
+    ? error.message
+    : "Cloud sync is unavailable. Your favorites remain saved on this device.";
+}
+
+async function pushAll(): Promise<SyncResult> {
   const sb = getSupabase();
-  if (!sb) return;
-  const { data } = await sb.auth.getSession();
-  const user = data.session?.user;
-  if (!user) return;
+  if (!sb) return { ok: false, message: "Supabase is not configured." };
   try {
+    const { data, error: sessionError } = await sb.auth.getSession();
+    if (sessionError) throw sessionError;
+    const user = data.session?.user;
+    if (!user) {
+      setSyncState("signed-out");
+      return { ok: false, message: "Sign in first." };
+    }
     setSyncState("syncing");
     const cols = load();
     const rows = cols.map((c) => ({
@@ -81,8 +93,11 @@ async function pushAll(): Promise<void> {
       if (delErr) throw delErr;
     }
     setSyncState("synced", new Date().toLocaleTimeString());
+    return { ok: true, message: "Synced." };
   } catch (e) {
-    setSyncState("error", e instanceof Error ? e.message : "sync failed");
+    const message = syncError(e);
+    setSyncState("error", message);
+    return { ok: false, message };
   }
 }
 
@@ -103,16 +118,17 @@ function mergeCollections(local: Collection[], remote: Collection[]): Collection
 }
 
 // Pull remote collections, merge into local, persist, then push the merge back.
-export async function syncNow(): Promise<{ ok: boolean; message: string }> {
+export async function syncNow(): Promise<SyncResult> {
   const sb = getSupabase();
   if (!sb) return { ok: false, message: "Supabase is not configured." };
-  const { data } = await sb.auth.getSession();
-  const user = data.session?.user;
-  if (!user) {
-    setSyncState("signed-out");
-    return { ok: false, message: "Sign in first." };
-  }
   try {
+    const { data, error: sessionError } = await sb.auth.getSession();
+    if (sessionError) throw sessionError;
+    const user = data.session?.user;
+    if (!user) {
+      setSyncState("signed-out");
+      return { ok: false, message: "Sign in first." };
+    }
     setSyncState("syncing");
     const { data: rows, error } = await sb
       .from("user_collections")
@@ -127,10 +143,9 @@ export async function syncNow(): Promise<{ ok: boolean; message: string }> {
     const merged = mergeCollections(load(), remote);
     localStorage.setItem(KEY, JSON.stringify(merged));
     window.dispatchEvent(new Event("ans:collections"));
-    await pushAll();
-    return { ok: true, message: "Synced." };
+    return await pushAll();
   } catch (e) {
-    const msg = e instanceof Error ? e.message : "sync failed";
+    const msg = syncError(e);
     setSyncState("error", msg);
     return { ok: false, message: msg };
   }
@@ -141,9 +156,8 @@ async function maybeAutoSync() {
   const sb = getSupabase();
   if (!sb) return;
   autoSynced = true;
-  const { data } = await sb.auth.getSession();
-  if (data.session?.user) await syncNow();
-  else setSyncState("signed-out");
+  // syncNow handles session lookup failures as well as database failures.
+  await syncNow();
 }
 
 // ---------- hooks ----------
